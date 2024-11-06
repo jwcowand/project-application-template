@@ -9,7 +9,7 @@ import argparse
 
 import config
 from example_analysis import ExampleAnalysis
-
+from month_issue_analysis import MonthIssueAnalysis
 
 def parse_args():
     """
@@ -46,13 +46,12 @@ config.overwrite_from_args(args)
     
 # Run the feature specified in the --feature flag
 if args.feature == 0:
-    ExampleAnalysis().run()
+    ExampleAnalysis().run() #Analysis of labels
 elif args.feature == 1:
-    pass # TODO call first analysis
-    
+    pass #Analysis of top closing users 
 elif args.feature == 2:
-    pass # TODO call second analysis
+    MonthIssueAnalysis().run() #Analysis of opened and closed tickets based on months
 elif args.feature == 3:
-    pass # TODO call third analysis
+    pass #Analysis of average time it takes to close various issue types
 else:
     print('Need to specify which feature to run with --feature flag.')

@@ -85,7 +85,6 @@ class ExampleAnalysis:
         if times_to_resolve:
             avg_time_to_resolve = sum(times_to_resolve) / len(times_to_resolve)
             print(f"\nAverage Time to Resolve Issues: {avg_time_to_resolve:.2f} days\n")
-
             # Plotting the distribution of resolution times
             plt.hist(times_to_resolve, bins=20, color='skyblue', edgecolor='black')
             plt.title("Distribution of Time to Resolve Issues")
