@@ -1,5 +1,5 @@
 # ENPM611 Project Group 2
-
+This project contains a set of analysis that can be run against issues from the Poetry repo. These analysis were made to help contributors to poetry understand and visualize various statistics of issues.
 
 
 ### Install dependencies
@@ -26,7 +26,7 @@ python run.py --feature 0
 ```
 
 Analysis Two:
-Analysis of closed issues. (maybe lets add argument for --user or --label to filter)
+Analysis of most closed issues. (maybe lets add argument for --user or --label to filter)
 ```
 python run.py --feature 1
 ```
