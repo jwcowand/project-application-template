@@ -10,6 +10,8 @@ import argparse
 import config
 from example_analysis import ExampleAnalysis
 from month_issue_analysis import MonthIssueAnalysis
+from data_loader import DataLoader
+from analysis import Analysis
 
 def parse_args():
     """
@@ -48,7 +50,22 @@ config.overwrite_from_args(args)
 if args.feature == 0:
     ExampleAnalysis().run() #Analysis of labels
 elif args.feature == 1:
-    pass #Analysis of top closing users 
+    # Call Feature1Analysis with optional filters if provided
+    label = args.label or config.get_parameter('label')  # Use command-line label if provided, else fallback to config
+    user = args.user or config.get_parameter('creator')  # Use command-line user if provided, else fallback to config
+    
+    # Initialize the DataLoader and load the DataFrame
+    data_loader = DataLoader()
+    df = data_loader.load_and_process_issues()  # This loads your issues data
+    
+    # Initialize the Analysis object
+    analysis = Analysis()  # No need to pass df to the constructor
+    
+    # Filter the issues based on the provided label and creator
+    filtered_df = analysis.filter_issues(df, label=label, creator=user)
+    
+    # Perform the analysis and visualization on the filtered issues
+    analysis.analyze_and_visualize(filtered_df, df)
 elif args.feature == 2:
     MonthIssueAnalysis().run() #Analysis of opened and closed tickets based on months
 elif args.feature == 3:
