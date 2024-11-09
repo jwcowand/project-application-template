@@ -50,16 +50,16 @@ config.overwrite_from_args(args)
 if args.feature == 0:
     ExampleAnalysis().run() #Analysis of labels
 elif args.feature == 1:
-    # Call Feature1Analysis with optional filters if provided
-    label = args.label or config.get_parameter('label')  # Use command-line label if provided, else fallback to config
-    user = args.user or config.get_parameter('creator')  # Use command-line user if provided, else fallback to config
+    # Calling Feature1Analysis with optional filters if provided
+    label = args.label or config.get_parameter('label')  
+    user = args.user or config.get_parameter('creator')  
     
     # Initialize the DataLoader and load the DataFrame
     data_loader = DataLoader()
     df = data_loader.load_and_process_issues()  # This loads your issues data
     
     # Initialize the Analysis object
-    analysis = Analysis()  # No need to pass df to the constructor
+    analysis = Analysis()  
     
     # Filter the issues based on the provided label and creator
     filtered_df = analysis.filter_issues(df, label=label, creator=user)
