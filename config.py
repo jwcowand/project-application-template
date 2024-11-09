@@ -121,3 +121,13 @@ def overwrite_from_args(args):
                 set_parameter(name, value)
     except:
         pass
+    
+def update_config_from_args(args):
+    """
+    Updates the _config dictionary with command-line arguments for label and user.
+    """
+    _init_config()
+    if args.label:
+        _config['label'] = args.label
+    if args.user:
+        _config['creator'] = args.user

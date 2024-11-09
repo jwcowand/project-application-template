@@ -1,3 +1,6 @@
 {
-    "file_path": "C:\\Users\\Chandana\\Desktop\\github_issues_611\\project-application-template\\poetry_issues.json"
+    "file_path": "poetry_issues.json",
+    "default_label": "kind/bug" ,
+    "default_creator":"dbrtly"
+
 }
