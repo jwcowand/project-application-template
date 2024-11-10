@@ -87,7 +87,7 @@ if __name__ == '__main__':
     if not df.empty:
         null_counts = df.isnull().sum()
         print(null_counts)
-        print(df.head())
-        print(df.describe())
-        print(df.info())
-        print(df.columns)
+        print(df.head(10))
+        # print(df.describe())
+        # print(df.info())
+        # print(df.columns)

@@ -1,15 +1,8 @@
-
-
-"""
-Starting point of the application. This module is invoked from
-the command line to run the analyses.
-"""
-
 import argparse
-
 import config
 from example_analysis import ExampleAnalysis
-
+from analysis import Analysis  # Import the new analysis class/module for feature 1
+from data_loader import DataLoader
 
 def parse_args():
     """
@@ -25,7 +18,7 @@ def parse_args():
     
     # Required parameter specifying what analysis to run
     ap.add_argument('--feature', '-f', type=int, required=True,
-                    help='Which of the three features to run')
+                    help='Which of the features to run')
     
     # Optional parameter for analyses focusing on a specific user (i.e., contributor)
     ap.add_argument('--user', '-u', type=str, required=False,
@@ -35,24 +28,40 @@ def parse_args():
     ap.add_argument('--label', '-l', type=str, required=False,
                     help='Optional parameter for analyses focusing on a specific label')
     
+    
     return ap.parse_args()
-
 
 
 # Parse feature to call from command line arguments
 args = parse_args()
+
 # Add arguments to config so that they can be accessed in other parts of the application
 config.overwrite_from_args(args)
-    
+
 # Run the feature specified in the --feature flag
 if args.feature == 0:
     ExampleAnalysis().run()
 elif args.feature == 1:
-    pass # TODO call first analysis
+    # Call Feature1Analysis with optional filters if provided
+    label = args.label or config.get_parameter('label')  # Use command-line label if provided, else fallback to config
+    user = args.user or config.get_parameter('creator')  # Use command-line user if provided, else fallback to config
     
+    # Initialize the DataLoader and load the DataFrame
+    data_loader = DataLoader()
+    df = data_loader.load_and_process_issues()  # This loads your issues data
+    
+    # Initialize the Analysis object
+    analysis = Analysis()  # No need to pass df to the constructor
+    
+    # Filter the issues based on the provided label and creator
+    filtered_df = analysis.filter_issues(df, label=label, creator=user)
+    
+    # Perform the analysis and visualization on the filtered issues
+    analysis.analyze_and_visualize(filtered_df,df)
+
 elif args.feature == 2:
-    pass # TODO call second analysis
+    pass  # TODO: Call second analysis
 elif args.feature == 3:
-    pass # TODO call third analysis
+    pass  # TODO: Call third analysis
 else:
     print('Need to specify which feature to run with --feature flag.')

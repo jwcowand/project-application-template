@@ -1,13 +1,8 @@
 import logging
-logger = logging.getLogger(__name__)
-
 import json
 import os
 
-'''
-Handles the loading of the config file as well as the access of specific
-config parameters.
-'''
+logger = logging.getLogger(__name__)
 
 _config = None
 
@@ -21,7 +16,6 @@ def _init_config(path=None):
     if filepath is None:
         logger.info('Initializing empty config')
         _config = {}
-
     else:
         with open(filepath, 'r') as fin:
             _config = json.loads(fin.read())
@@ -104,7 +98,7 @@ def set_parameter(name, value):
 
 def overwrite_from_args(args):
     """
-    Writes command line paramters into the config so any parameter
+    Writes command line parameters into the config so any parameter
     can be accessed the same way through the config. It adds any parameters
     that are missing and overwrites parameters that already exist.
     """
@@ -121,3 +115,14 @@ def overwrite_from_args(args):
                 set_parameter(name, value)
     except:
         pass
+
+
+def update_config_from_args(args):
+    """
+    Updates the _config dictionary with command-line arguments for `label` and `user`.
+    """
+    _init_config()
+    if args.label:
+        _config['label'] = args.label
+    if args.user:
+        _config['creator'] = args.user
