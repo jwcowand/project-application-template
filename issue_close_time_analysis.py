@@ -76,7 +76,7 @@ class IssueCloseTimeAnalysis:
         plt.xticks(rotation=45, ha='right')  # Rotate labels for better visibility
 
         # Display the plot
-        plt.tight_layout() 
+        plt.tight_layout()
         plt.show()
 
 if __name__ == '__main__':
