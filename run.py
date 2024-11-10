@@ -10,6 +10,7 @@ import argparse
 import config
 from example_analysis import ExampleAnalysis
 from month_issue_analysis import MonthIssueAnalysis
+from issue_close_time_analysis import IssueCloseTimeAnalysis
 from data_loader import DataLoader
 from analysis import Analysis
 
@@ -69,6 +70,6 @@ elif args.feature == 1:
 elif args.feature == 2:
     MonthIssueAnalysis().run() #Analysis of opened and closed tickets based on months
 elif args.feature == 3:
-    pass #Analysis of average time it takes to close various issue types
+    IssueCloseTimeAnalysis().run() #Analysis of average time it takes to close various issue types
 else:
     print('Need to specify which feature to run with --feature flag.')
