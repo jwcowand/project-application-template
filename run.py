@@ -8,7 +8,7 @@ the command line to run the analyses.
 import argparse
 
 import config
-from example_analysis import ExampleAnalysis
+from overall_analysis import OverallAnalysis
 from month_issue_analysis import MonthIssueAnalysis
 from issue_close_time_analysis import IssueCloseTimeAnalysis
 from data_loader import DataLoader
@@ -49,7 +49,7 @@ config.overwrite_from_args(args)
     
 # Run the feature specified in the --feature flag
 if args.feature == 0:
-    ExampleAnalysis().run() #Analysis of labels
+    OverallAnalysis().run() #Analysis of labels
 elif args.feature == 1:
     # Calling Feature1Analysis with optional filters if provided
     label = args.label or config.get_parameter('label')  

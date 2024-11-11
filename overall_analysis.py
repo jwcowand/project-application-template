@@ -8,7 +8,7 @@ from data_loader import DataLoader  # Ensure the import is correct
 from model import Issue, Event  # Ensure you have defined these classes appropriately
 import config
 
-class ExampleAnalysis:
+class OverallAnalysis:
     """
     Implements an example analysis of GitHub issues and outputs the result of that analysis.
     """
@@ -80,7 +80,7 @@ class ExampleAnalysis:
             if issue['state'] == 'closed' and issue['created_at'] and issue['updated_at']:
                 created_at = issue['created_at']
                 updated_at = issue['updated_at']
-                times_to_resolve.append((updated_at - created_at).days)
+                times_to_resolve.append((updated_at - created_at).days)#Check this, i think this needs to be issue[closed_at] - issue[created_at]
         
         if times_to_resolve:
             avg_time_to_resolve = sum(times_to_resolve) / len(times_to_resolve)
@@ -96,4 +96,4 @@ class ExampleAnalysis:
 
 if __name__ == '__main__':
     # Invoke run method when running this module directly
-    ExampleAnalysis().run()
+    OverallAnalysis().run()

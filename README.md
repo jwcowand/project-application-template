@@ -26,9 +26,9 @@ python run.py --feature 0
 ```
 
 Analysis Two:
-Analysis of most closed issues. (maybe lets add argument for --user or --label to filter)
+Analysis of most closed issues by user and labels. Can pass user or label arguments.
 ```
-python run.py --feature 1
+python run.py --feature 1 --user radoering
 ```
 Analysis Three:
 Analysis of monthly closed and opened issues.
