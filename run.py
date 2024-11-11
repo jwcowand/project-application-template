@@ -52,21 +52,24 @@ if args.feature == 0:
     OverallAnalysis().run() #Analysis of labels
 elif args.feature == 1:
     # Calling Feature1Analysis with optional filters if provided
-    label = args.label or config.get_parameter('label')  
-    user = args.user or config.get_parameter('creator')  
-    
-    # Initialize the DataLoader and load the DataFrame
-    data_loader = DataLoader()
-    df = data_loader.load_and_process_issues()  # This loads your issues data
+    if args.label == None and args.user == None:
+        print("Please provide a --user or --label argument")
+    else:
+        label = args.label or config.get_parameter('label')  
+        user = args.user or config.get_parameter('creator')  
+        data_loader = DataLoader()
+        df = data_loader.load_and_process_issues()  # This loads your issues data
     
     # Initialize the Analysis object
-    analysis = Analysis()  
+        analysis = Analysis()  
     
     # Filter the issues based on the provided label and creator
-    filtered_df = analysis.filter_issues(df, label=label, creator=user)
+        filtered_df = analysis.filter_issues(df, label=label, creator=user)
     
     # Perform the analysis and visualization on the filtered issues
-    analysis.analyze_and_visualize(filtered_df, df)
+        analysis.analyze_and_visualize(filtered_df, df)
+    # Initialize the DataLoader and load the DataFrame
+    
 elif args.feature == 2:
     MonthIssueAnalysis().run() #Analysis of opened and closed tickets based on months
 elif args.feature == 3:
